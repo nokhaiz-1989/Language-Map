@@ -3,6 +3,7 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 import plotly.express as px
+import os
 from folium.plugins import Search
 
 
@@ -41,15 +42,34 @@ This digital atlas connects:
 # LOAD DATA
 # -------------------------------
 
+import os
+
+
 @st.cache_data
 def load_data():
 
+    base_path = os.path.dirname(__file__)
+
+    language_file = os.path.join(
+        base_path,
+        "data",
+        "languages.csv"
+    )
+
+    poet_file = os.path.join(
+        base_path,
+        "data",
+        "sufi_poets.csv"
+    )
+
     languages = pd.read_csv(
-        "data/languages.csv"
+        language_file,
+        encoding="utf-8"
     )
 
     poets = pd.read_csv(
-        "data/sufi_poets.csv"
+        poet_file,
+        encoding="utf-8"
     )
 
     return languages, poets
