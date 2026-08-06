@@ -4,7 +4,6 @@ import folium
 from streamlit_folium import st_folium
 import plotly.express as px
 import os
-from folium.plugins import Search
 
 
 # -------------------------------
@@ -42,7 +41,39 @@ This digital atlas connects:
 # LOAD DATA
 # -------------------------------
 
-import os
+REQUIRED_LANGUAGE_COLS = [
+    "Language", "Category", "Family", "Province", "Speakers",
+    "Script", "Endangerment_Status", "Description",
+    "Latitude", "Longitude"
+]
+
+REQUIRED_POET_COLS = [
+    "Name", "Birth", "Death", "Language", "Region",
+    "Sufi_Order", "Famous_Work", "Description",
+    "Latitude", "Longitude"
+]
+
+
+def normalize_columns(df):
+    """Strip whitespace and normalize casing/spacing so small CSV
+    formatting differences (e.g. ' category ', 'category') don't
+    break the app."""
+    df = df.copy()
+    df.columns = [str(c).strip() for c in df.columns]
+    return df
+
+
+def check_required_columns(df, required, file_label):
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        st.error(
+            f"❌ **{file_label} is missing required column(s): "
+            f"{', '.join(missing)}**\n\n"
+            f"Columns found in the file: {list(df.columns)}\n\n"
+            "Please check your CSV header row for typos, extra spaces, "
+            "or a different delimiter (e.g. semicolon instead of comma)."
+        )
+        st.stop()
 
 
 @st.cache_data
@@ -50,33 +81,42 @@ def load_data():
 
     base_path = os.path.dirname(__file__)
 
-    language_file = os.path.join(
-        base_path,
-        "data",
-        "languages.csv"
-    )
+    language_file = os.path.join(base_path, "data", "languages.csv")
+    poet_file = os.path.join(base_path, "data", "sufi_poets.csv")
 
-    poet_file = os.path.join(
-        base_path,
-        "data",
-        "sufi_poets.csv"
-    )
+    if not os.path.exists(language_file):
+        st.error(f"❌ File not found: {language_file}")
+        st.stop()
 
-    languages = pd.read_csv(
-        language_file,
-        encoding="utf-8"
-    )
+    if not os.path.exists(poet_file):
+        st.error(f"❌ File not found: {poet_file}")
+        st.stop()
 
-    poets = pd.read_csv(
-        poet_file,
-        encoding="utf-8"
-    )
+    languages = pd.read_csv(language_file, encoding="utf-8-sig")
+    poets = pd.read_csv(poet_file, encoding="utf-8-sig")
+
+    languages = normalize_columns(languages)
+    poets = normalize_columns(poets)
 
     return languages, poets
 
 
 languages, poets = load_data()
 
+check_required_columns(languages, REQUIRED_LANGUAGE_COLS, "languages.csv")
+check_required_columns(poets, REQUIRED_POET_COLS, "sufi_poets.csv")
+
+# Make sure numeric columns are actually numeric (guards against
+# stray text, commas, or blank cells in the CSV).
+languages["Speakers"] = pd.to_numeric(languages["Speakers"], errors="coerce").fillna(0)
+languages["Latitude"] = pd.to_numeric(languages["Latitude"], errors="coerce")
+languages["Longitude"] = pd.to_numeric(languages["Longitude"], errors="coerce")
+poets["Latitude"] = pd.to_numeric(poets["Latitude"], errors="coerce")
+poets["Longitude"] = pd.to_numeric(poets["Longitude"], errors="coerce")
+
+# Drop rows with missing coordinates so the map doesn't error out.
+languages = languages.dropna(subset=["Latitude", "Longitude"])
+poets = poets.dropna(subset=["Latitude", "Longitude"])
 
 
 # -------------------------------
@@ -104,15 +144,15 @@ if "Languages" in layer_choice:
 
     category_filter = st.sidebar.multiselect(
         "Language Category",
-        languages["Category"].unique(),
-        default=languages["Category"].unique()
+        sorted(languages["Category"].dropna().unique()),
+        default=sorted(languages["Category"].dropna().unique())
     )
 
 
     status_filter = st.sidebar.multiselect(
         "Endangerment Status",
-        languages["Endangerment_Status"].unique(),
-        default=languages["Endangerment_Status"].unique()
+        sorted(languages["Endangerment_Status"].dropna().unique()),
+        default=sorted(languages["Endangerment_Status"].dropna().unique())
     )
 
 
@@ -194,7 +234,7 @@ if "Languages" in layer_choice:
 
         <b>Province:</b> {row['Province']}<br>
 
-        <b>Speakers:</b> {row['Speakers']:,}<br>
+        <b>Speakers:</b> {int(row['Speakers']):,}<br>
 
         <b>Script:</b> {row['Script']}<br>
 
@@ -218,7 +258,7 @@ if "Languages" in layer_choice:
                 5,
                 min(
                     18,
-                    row["Speakers"]/5000000
+                    row["Speakers"] / 5000000
                 )
             ),
 
@@ -380,7 +420,7 @@ with col3:
 
     st.metric(
         "Total Speakers",
-        f"{total_speakers:,}"
+        f"{int(total_speakers):,}"
     )
 
 
@@ -391,7 +431,7 @@ with col3:
 # -------------------------------
 
 
-if len(languages)>0:
+if len(languages) > 0:
 
 
     fig = px.pie(
@@ -412,7 +452,7 @@ if len(languages)>0:
 
 
 
-if len(poets)>0:
+if len(poets) > 0:
 
 
     fig2 = px.bar(
