@@ -1,17 +1,17 @@
-Language	Category	Family	Province	Region	Latitude	Longitude	Speakers	Script	Endangerment_Status	Description
-Urdu	National	Indo-Aryan	All Pakistan	National Language	30.3753	69.3451	70000000	Perso-Arabic	Safe	National lingua franca of Pakistan
-Punjabi	Regional	Indo-Aryan	Punjab	Punjab	31.5204	74.3587	80000000	Shahmukhi	Safe	Most widely spoken regional language of Pakistan
-Sindhi	Regional	Indo-Aryan	Sindh	Sindh	25.8943	68.5247	30000000	Sindhi-Arabic	Safe	Major language of Sindh with rich literary tradition
-Pashto	Regional	Iranian	Khyber Pakhtunkhwa	KP and Balochistan	34.0151	71.5249	35000000	Perso-Arabic	Safe	Major eastern Iranian language
-Saraiki	Regional	Indo-Aryan	Southern Punjab	Saraiki Belt	30.1575	71.5249	25000000	Shahmukhi	Vulnerable	Regional language of southern Punjab
-Balochi	Regional	Iranian	Balochistan	Balochistan	28.4907	65.0958	6000000	Perso-Arabic	Vulnerable	Western Iranian language spoken in Balochistan
-Brahui	Regional	Dravidian	Balochistan	Brahui Region	30.1798	66.975	3000000	Perso-Arabic	Vulnerable	Dravidian language surrounded by Iranian languages
-Hindko	Regional	Indo-Aryan	Khyber Pakhtunkhwa	Hazara Region	34.1495	73.1995	5000000	Shahmukhi	Vulnerable	Western Punjabi variety
-Shina	Endangered	Dardic	Gilgit Baltistan	Gilgit Valley	35.9208	74.308	1100000	Perso-Arabic	Vulnerable	Dardic language of northern Pakistan
-Burushaski	Endangered	Language Isolate	Gilgit Baltistan	Hunza and Nagar	36.3167	74.65	100000	Perso-Arabic	Vulnerable	Unique language isolate
-Ormuri	Endangered	Iranian	Khyber Pakhtunkhwa	Kanikur area	32.9	69.8	5000	Perso-Arabic	Severely Endangered	Eastern Iranian endangered language
-Kalasha	Endangered	Indo-Aryan	Khyber Pakhtunkhwa	Chitral Valleys	35.7	71.8	5000	Latin and Perso-Arabic	Critically Endangered	Ancient language of Kalash community
-Khowar	Regional	Dardic	Khyber Pakhtunkhwa	Chitral	35.85	71.78	400000	Perso-Arabic	Vulnerable	Major language of Chitral
-Wakhi	Endangered	Iranian	Gilgit Baltistan	Hunza and Upper Regions	36.5	74.8	10000	Perso-Arabic	Vulnerable	Eastern Iranian Pamiri language
-Balti	Regional	Tibetic	Gilgit Baltistan	Baltistan	35.2	75	400000	Tibetan and Perso-Arabic	Vulnerable	Tibetic language of Baltistan
-Gujari	Regional	Indo-Aryan	Khyber Pakhtunkhwa and Punjab	Mountain regions	34	72.5	4000000	Perso-Arabic	Vulnerable	Language of Gujjar communities
+Language,Category,Family,Province,Region,Latitude,Longitude,Speakers,Script,Endangerment_Status,Description
+Urdu,National,Indo-Aryan,All Pakistan,National Language,30.3753,69.3451,70000000,Perso-Arabic,Safe,National lingua franca of Pakistan
+Punjabi,Regional,Indo-Aryan,Punjab,Punjab,31.5204,74.3587,80000000,Shahmukhi,Safe,Most widely spoken regional language of Pakistan
+Sindhi,Regional,Indo-Aryan,Sindh,Sindh,25.8943,68.5247,30000000,Sindhi-Arabic,Safe,Major language of Sindh with rich literary tradition
+Pashto,Regional,Iranian,Khyber Pakhtunkhwa,KP and Balochistan,34.0151,71.5249,35000000,Perso-Arabic,Safe,Major eastern Iranian language
+Saraiki,Regional,Indo-Aryan,Southern Punjab,Saraiki Belt,30.1575,71.5249,25000000,Shahmukhi,Vulnerable,Regional language of southern Punjab
+Balochi,Regional,Iranian,Balochistan,Balochistan,28.4907,65.0958,6000000,Perso-Arabic,Vulnerable,Western Iranian language spoken in Balochistan
+Brahui,Regional,Dravidian,Balochistan,Brahui Region,30.1798,66.9750,3000000,Perso-Arabic,Vulnerable,Dravidian language surrounded by Iranian languages
+Hindko,Regional,Indo-Aryan,Khyber Pakhtunkhwa,Hazara Region,34.1495,73.1995,5000000,Shahmukhi,Vulnerable,Western Punjabi variety
+Shina,Endangered,Dardic,Gilgit Baltistan,Gilgit Valley,35.9208,74.3080,1100000,Perso-Arabic,Vulnerable,Dardic language of northern Pakistan
+Burushaski,Endangered,Language Isolate,Gilgit Baltistan,Hunza and Nagar,36.3167,74.6500,100000,Perso-Arabic,Vulnerable,Unique language isolate
+Ormuri,Endangered,Iranian,Khyber Pakhtunkhwa,Kanikur area,32.9000,69.8000,5000,Perso-Arabic,Severely Endangered,Eastern Iranian endangered language
+Kalasha,Endangered,Indo-Aryan,Khyber Pakhtunkhwa,Chitral Valleys,35.7000,71.8000,5000,Latin and Perso-Arabic,Critically Endangered,Ancient language of Kalash community
+Khowar,Regional,Dardic,Khyber Pakhtunkhwa,Chitral,35.8500,71.7800,400000,Perso-Arabic,Vulnerable,Major language of Chitral
+Wakhi,Endangered,Iranian,Gilgit Baltistan,Hunza and Upper Regions,36.5000,74.8000,10000,Perso-Arabic,Vulnerable,Eastern Iranian Pamiri language
+Balti,Regional,Tibetic,Gilgit Baltistan,Baltistan,35.2000,75.0000,400000,Tibetan and Perso-Arabic,Vulnerable,Tibetic language of Baltistan
+Gujari,Regional,Indo-Aryan,Khyber Pakhtunkhwa and Punjab,Mountain regions,34.0000,72.5000,4000000,Perso-Arabic,Vulnerable,Language of Gujjar communities
